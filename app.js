@@ -3,7 +3,7 @@ const app=express()
 const  session=require("express-session")
 const cookiParser=require("cookie-parser")
 const path=require("path")
-// const adminRouter=require("./routes/admin")
+const adminRouter=require("./routes/admin")
 const userRouter=require("./routes/user")
 const dotenv=require("dotenv")
 const dbconnect=require("./config/connection")
@@ -36,7 +36,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/",userRouter)
-// app.use("/admin",adminRouter)
+app.use("/admin",adminRouter)
 app.use((req,res)=>{
     res.status(404).render("404")
 })
