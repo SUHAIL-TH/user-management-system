@@ -1,16 +1,22 @@
 const express=require("express")
+const app=express()
 const  session=require("express-session")
 const cookiParser=require("cookie-parser")
 const path=require("path")
-const adminRouter=require("./routes/admin")
+// const adminRouter=require("./routes/admin")
 const userRouter=require("./routes/user")
 const dotenv=require("dotenv")
+const dbconnect=require("./config/connection")
 
-const app=express()
+dotenv.config()
+
+dbconnect.dbconnect()
+
 app.set(cookiParser())
 app.set('views');
 app.set('view engine', 'ejs');
-app.use(express.static(patch.join(__dirname,'public')))
+app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname,'public')))
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(session({
@@ -19,7 +25,7 @@ app.use(session({
     cookie: { maxAge: 6000000 },
     resave: false 
 }));
-dotenv.config()
+
 //remove cache
 app.use((req, res, next) => {
     res.header(
@@ -30,13 +36,21 @@ app.use((req, res, next) => {
 });
 
 app.use("/",userRouter)
-app.use("/admin",adminRouter)
+// app.use("/admin",adminRouter)
+app.use((req,res)=>{
+    res.status(404).render("404")
+})
 
 
 
 
-app.listen(3000,()=>{
+app.listen(process.env.PORT,()=>{
     console.log(
         "server started listening to port"
     );
 })
+
+
+
+
+
