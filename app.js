@@ -7,6 +7,7 @@ const adminRouter=require("./routes/admin")
 const userRouter=require("./routes/user")
 const dotenv=require("dotenv")
 const dbconnect=require("./config/connection")
+const morgan=require("morgan")
 
 dotenv.config()
 
@@ -17,6 +18,8 @@ app.set('views');
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.static(path.join(__dirname,'public')))
+// app.use(morgan(":method:status:url'HTTP/:http-version'"))
+app.use(morgan('tiny'))
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(session({
