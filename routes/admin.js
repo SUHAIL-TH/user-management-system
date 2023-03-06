@@ -1,6 +1,7 @@
 const express=require("express")
 const adminRouter=express()
 const adminController=require("../contollers/adminController")
+const userController = require("../contollers/userController")
 
 
 adminRouter.get("/",adminController.getlogin)
@@ -12,4 +13,5 @@ adminRouter.get("/delete/:id",adminController.deleteUser)
 adminRouter.get("/backhome",adminController.backhome)
 adminRouter.get("/adduser",adminController.adduser)
 adminRouter.post("/newuser",adminController.newuser)
+adminRouter.get("/search",adminController.usersearch)
 module.exports=adminRouter;

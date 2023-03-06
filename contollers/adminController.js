@@ -23,25 +23,28 @@ module.exports={
            
             let email=req.body.email
             let password=req.body.password
-            if(req.session.admin){
-
-            }else{
-                
-            }
-             if(email==process.env.Admin_email){
-                req.session.admin=req.body.email
+           
+            if(email===process.env.Admin_email){
+               
                 if(password==process.env.Admin_pass){
+                    req.session.admin=req.body.email
                     let users=await user.find()
+                    // let search='';
+                    // if(req.query.search!=""){
+                    //     search=req.query.search
+                    //     let users=await user.find({$or:[{name:{$regex:'.*'+search+'.*',$options:'i'}}]})
+                        res.render("admin/home",{users})
+                    // }
                    
-                    res.render("admin/home",{users})
+                    
                 }else{
                     res.render("admin/login",{error:"invalid password"})
                 }
 
                 
-             }else{
+            }else{
                 res.render("admin/login",{error:"Invalid email"})
-             }
+            }
             
         } catch (error) {
             console.log(error);
@@ -49,7 +52,7 @@ module.exports={
         }
     },
     getlogout:(req,res)=>{
-         req.session.destroy()
+         req.session.admin=false
         res.redirect("/admin")  
     },
     edituser:async(req,res)=>{
@@ -125,6 +128,26 @@ module.exports={
        
        
         
+
+    },
+     usersearch:async(req,res)=>{
+        if(req.session.admin){
+            let search='';
+            console.log("seach : " + req.query.search)
+                    if(req.query.search!=""){
+                        search=req.query.search
+                        console.log("search : " + search)
+                        let users=await user.find({name:{$regex:'.*'+search+'.*',$options:'i'}})
+                        console.log(users);
+                    res.render("admin/home",{users})
+                    }
+
+                   
+
+
+        }else{
+            res.redirect("/ ")
+        }
 
     }
 
