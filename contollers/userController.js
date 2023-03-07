@@ -59,7 +59,6 @@ module.exports={
                 let passwordMatch=await bcrypt.compare(password,userData.password)
                 if(passwordMatch){
                     req.session.user=req.body.email 
-                    
                     res.render("user/home")
                 }
                 else{
@@ -76,7 +75,7 @@ module.exports={
         }
     },
     logout:(req,res)=>{
-         req.session.destroy()
+         req.session.user=false
          res.redirect("/")     
     },
     backhome:(req,res)=>{

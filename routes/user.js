@@ -6,7 +6,7 @@ userRouter.get("/",userController.login)
 userRouter.get("/signup",userController.signup)
 userRouter.post("/usersignup",userController.usersignup)
 userRouter.post("/userlogin",userController.postlogin)
-userRouter.get("/logout",userController.logout)
+userRouter.get("/logoutt",userController.logout)
 userRouter.get("/backhome",userController.backhome)
 
 
