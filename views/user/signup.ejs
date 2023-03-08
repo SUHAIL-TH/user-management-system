@@ -12,21 +12,21 @@
               <form method="post" action="/usersignup" id="form"  class="form-group" >
 
                 <div class="form-outline mb-4">
-                  <input type="text" id="form3Example1cg" name="name" class="form-control form-control-lg" />
+                  <input type="text" id="name" name="name" class="form-control " required />
                   <label class="form-label" for="form3Example1cg">Name</label>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="email" id="form3Example3cg" name="email" class="form-control form-control-lg" />
+                  <input type="email" id="email" name="email" class="form-control" required/>
                   <label class="form-label" for="form3Example3cg">Email</label>
                 </div>
                 <div class="form-outline mb-4">
-                    <input type="text" id="form3Example1cg" name="phone" class="form-control form-control-lg" />
+                    <input type="text" id="phone" name="phone" class="form-control " required />
                     <label class="form-label" for="form3Example1cg">Phone</label>
                   </div>
 
                 <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4cg" name="password" class="form-control form-control-lg" />
+                  <input type="password" id="password" name="password" class="form-control " required />
                   <label class="form-label" for="form3Example4cg">Password</label>
                 </div>
 
@@ -56,4 +56,51 @@
     </div>
   </div>
 </section>
+<script>
+  document.getElementById("name").addEventListener("input",function(){
+   
+   var name=document.getElementById("name").value.trim()
+   
+   if(name==""){
+     document.getElementById("name").setCustomValidity("Name cannot be null")
+   }else{
+     document.getElementById("name").setCustomValidity("")
+   }
+ })
+  document.getElementById("email").addEventListener("input",function(){
+   
+   var email=document.getElementById("email").value.trim()
+ 
+   if(email==""){
+     document.getElementById("email").setCustomValidity("Email cannot be null")
+   }else{
+     document.getElementById("email").setCustomValidity("")
+   }
+ })
+ document.getElementById("phone").addEventListener("input",function(){
+  var phone=document.getElementById("phone").value.trim() 
+   
+   if(phone.length<10){
+     document.getElementById("phone").setCustomValidity("phone number is less tha 10")
+   }else if(phone.length>10){
+    document.getElementById("phone").setCustomValidity("phone number is greater tha 10")
+
+   }
+  
+
+    else{
+     document.getElementById("phone").setCustomValidity("")
+   }
+ })
+ document.getElementById("password").addEventListener("input",function(){
+   var password=document.getElementById("password").value.trim()
+   
+   if(password.length<4){
+     document.getElementById("password").setCustomValidity("Password is less than 4")
+   }else{
+     document.getElementById("password").setCustomValidity("")
+
+   }
+ })
+</script>
 <%- include('../partials/footer.ejs') %>
