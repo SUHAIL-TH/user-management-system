@@ -16,19 +16,19 @@
 
                  
 
-                  <h5 class="fw-normal mb-3 pb-3 text-dark font-weight-bold" style="letter-spacing: 1px;">Login</h5>
+                  <h5 class="fw-normal mb-3 pb-3 text-dark font-weight-bold" style="letter-spacing: 1px;" >Login</h5>
 
                   <div class="form-outline mb-4">
-                     <label class="form-label" for="form2Example17">Email </label>
-                    <input type="email" id="Email" name="email" class="form-control form-control-lg" required  >
-                    <!-- <span id="usernameError" class="text-danger" ></span> -->
+                     <label class="form-label" >Email </label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter the email" required >
+                    
                    
                     
                   </div>
 
                   <div class="form-outline mb-4">
-                        <label class="form-label" for="form2Example27">Password</label >
-                    <input type="password" id="Password" name="password" class="form-control form-control-lg" required  />
+                        <label class="form-label"  >Password</label >
+                    <input type="password" id="password" name="password" class="form-control "  placeholder="Enter the password" required>
                 
                   </div>
                   <div class="mt-2">
@@ -63,6 +63,32 @@
     </div>
   </div>
 </section>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+<script>
+  
+  document.getElementById("email").addEventListener("input",function(){
+   
+    var email=document.getElementById("email").value.trim()
+    console.log(email);
+    if(email==""){
+      document.getElementById("email").setCustomValidity("Email cannot be null")
+    }else{
+      document.getElementById("email").setCustomValidity("")
+    }
+  })
+  document.getElementById("password").addEventListener("input",function(){
+    var password=document.getElementById("password").value.trim()
+    console.log();
+    if(password.length<4){
+      document.getElementById("password").setCustomValidity("Password is less than 4")
+    }else{
+      document.getElementById("password").setCustomValidity("")
+
+    }
+  })
+
+</script>
     
  <%- include('../partials/footer.ejs') %>     
    
