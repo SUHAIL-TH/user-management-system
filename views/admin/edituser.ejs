@@ -1,0 +1,38 @@
+<%- include('../partials/adminheader')%>
+<section>
+    <div class="container ">
+<div class="row  "> 
+  <div class="col-md-6">
+
+    <h2 class="text-center">Edit user</h2>
+    <form action="/admin/updateuser/<%=users._id%>" method="post" >
+    <div>
+        <label for="">Name</label>
+      <input type="text" name="name" class="form-control" value="<%= users.name%>" required> 
+
+
+    </div>
+
+    <div>
+        <label for="">Email</label>
+      <input type="text"  name="email" class="form-control" value="<%= users.email%>" required> 
+
+    </div>
+      <div>
+        <label for="">Phone</label>
+      <input type="text" name="phone" class="form-control" value="<%= users.phone%>"  required> 
+
+      </div>
+      <div>
+          <button type="submit" class="btn btn-success mt-3 font-weight-bold" >Submit</button>
+         
+
+      </div>
+    
+    </form>
+  </div>
+</div>
+</div>
+   
+  </section>
+<%- include('../partials/footer')%>

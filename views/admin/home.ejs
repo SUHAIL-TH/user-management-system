@@ -1,0 +1,53 @@
+<%- include('../partials/adminheader')%>
+
+<section class="mt-5">
+  <div class="container">
+    <div>
+      <form action="/admin/search"  class="float-right">
+        <input type="text" name="search" placeholder="Name or Email">
+    <input class="search-btn btn btn-secondary fa" type="submit" value="search"></input>
+    </form>
+
+    </div> 
+      
+    <div class="mt-5 ">
+      <table class="table table-sm " id="usertable">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone:</th>
+            <th scope="col">Options</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <% users.forEach(function(users){%>
+             <tr>
+            <th scope="row">1</th>
+            <td><%=users.name%></td>
+            <td><%=users.email%></td>
+            <td><%=users.phone%></td>
+            <td>
+              <a href="/admin/edituser/<%=users._id%>" class="btn btn-success font-weight-bold" >Edit</a>
+               <a href="/admin/delete/<%=users._id %>" class="btn btn-danger font-weight-bold" onclick="return confirm('do you want to delete the user <%=users.name %>')" >Delete</a>
+               
+            </td>
+          </tr>
+          <%})%>
+         
+        </tbody>
+      </table>
+
+    </div>
+    
+    
+
+  </div>
+  
+</section>
+
+
+
+<%- include('../partials/footer')%>
