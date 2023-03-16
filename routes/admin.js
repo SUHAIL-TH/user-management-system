@@ -1,7 +1,7 @@
 const express=require("express")
 const adminRouter=express()
 const adminController=require("../contollers/adminController")
-const userController = require("../contollers/userController")
+
 
 
 adminRouter.get("/",adminController.getlogin)
